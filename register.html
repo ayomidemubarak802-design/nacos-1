@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register  Page</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .register-container {
+        width: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        border: 1px solid #872adf;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #872adf;
+    }
+    input{
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #872adf;
+        border-radius: 5px;
+    }
+    select{
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #872adf;
+        border-radius: 5px;
+    }
+    input[type="submit"] {
+        background-color: #872adf;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+    input[type="submit"]:hover {
+        background-color: #00b368;
+    }
+
+</style>
+<body>
+    <div class="register-container">
+        <h1>Register</h1>
+        <form>
+            <label for="full name">Full Name</label>
+            <input type="text" id="full name" name="full name" required> <br>
+
+           <label for="username">Matric No/ Email:</label>
+            <input type="text" id="username" name="username" required> <br>
+            <label for="level">Level:</label>
+            <select id="level" name="level" required>
+                <option value="level1"> ND 1</option>
+                <option value="level2">ND 2</option>
+                <option value="level3">HND 1</option>
+                <option value="level3">HND 2</option>
+            </select><br>
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="department1">Computer Science</option>
+                <option value="department2">Information Technology</option>
+                <option value="department3">Software Engineering</option>
+            </select><br>
+            <label for="programmes">Programmes:</label>
+            <select id="programmes" name="programmes" required>
+                <option value="programme1">FULL TIME</option>
+                <option value="programme2">DPP</option>
+                <option value="programme3">PART TIME</option>
+             
+            </select><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br> 
+
+               <input type="submit" value="Register">
+        </form>
+
+    </div>
+    
+</body>
+</html>
