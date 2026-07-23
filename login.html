@@ -1,72 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-</head>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-    .login-container {
-        width: 300px;
-        margin: 100px auto;
-        padding: 20px;
-        border: 1px solid #08e275;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(24, 211, 149, 0.1);
-    }
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    label {
-        display: block;
-        margin-bottom: 5px;
-    }
-    input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #1ba043;
-        border-radius: 5px;
-    }
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #10eb59;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #00b368;
-    }
-    p {
-        text-align: center;
-        margin-top: 20px;
-    }
-    a {
-        color: #10eb59;
-        text-decoration: none;
-    }
+<html>
 
-</style>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Nacos login page</title>
+   <link rel="stylesheet" href="login.css"/>
+</head>
+
 <body>
-    <div class="login-container">
-        <h1>login</h1>
-        <form >
-            <label for="username">Matric No/ Email:</label>
-            <input type="text" id="username" name="username" required> <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>            <button type="submit">Login</button>
-        </form>
-        <p>don't have an account? <a href="register.html">Register</a></p>
-    </div>
+   <div class="login-container">
+      <div class="Nacos-logo">
+         <img src="nacos logo.png" alt="nacos-logo" />
+      </div>
+      
+      <form>
+         <h1>Login</h1>
+         <p id="comment">Access your NACOS portal account</p>
+         <label for="Matric No/Email">Matric No/Email:</label>
+         <input type="text" id="username" required/>
+         <label for="Password">Password:</label>
+         <div class="password-box">
+            <input type="password" name="psw" id="psw" required/><span id="togglepassword">🔒</span>
+         </div>
+         <button class="btn" type="submit">Login</button>
+      </form>
+      <p><a href="#">Forget your password?</a></p>
+      <p id="register">don't have an account?<a href="#">Register here</a></p>
+      
+   </div>
+   
+   <script>
+      const password = document.getElementById('psw')
+      const toggle = document. getElementById('togglepassword')
+      toggle.addEventListener('click', ()=>{
+         if (password.type==='password'){
+            password.type='text';
+            toggle.textContent='🔓'
+         }else{
+            password.type='password';
+            toggle.textContent='🔒';
+         }
+      });
+      
+      
+   </script>
 </body>
+
 </html>
