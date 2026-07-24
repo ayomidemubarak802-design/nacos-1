@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>counter</title>
+</head>
+<style>
+   *{
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', Times, serif;
+      box-sizing: border-box;
+   }
+   body{
+      background: hsla(264, 58%, 33%, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+   }
+   .container{
+      background-color: hsla(264, 33%, 69%, 1);
+      width:200px;
+      padding: 20px;
+      border-radius: 8px 30px;
+      box-shadow: 0 5px 13px brown;
+   }
+   input{
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+      outline:none;
+      text-align: right;
+      height: 50px;
+      margin-bottom: 20px;
+      padding: 10px;
+   }
+   .btns{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 5px;
+   }
+   button{
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      background: hsla(230, 48%, 39%, 1);
+      color: white;
+      font-weight: 500;
+      font-size: 24px;
+   }
+   button:hover{
+       transition: 3s;
+       background: hsla(230, 36%, 56%, 1);
+   }
+   
+</style>
+
+<body>
+   <div class="container">
+      <input id="display" type="text"/>
+      <div class="btns">
+         <button class="btn" id="reset">o</button>
+         <button class="btn" id="count">+</button>
+         <button class="btn" id="decount">-</button>
+      </div>
+   </div>
+   
+   
+   <div class="login">
+      
+   </div>
+   
+   
+   
+   <script>
+   const display = document.getElementById("display");
+
+let count = 0;
+display.value = count;
+
+// increase of plus
+document.getElementById("count").addEventListener("click", function() {
+   count++;
+   display.value = count;
+});
+
+//decrease or minus
+document.getElementById("decount").addEventListener("click", function() {
+   count--;
+   display.value = count;
+});
+
+// clear
+document.getElementById("reset").addEventListener("click", function() {
+   count = 0;
+   display.value = count;
+});
+  
+  
+   </script>
+</body>
+
+</html>
