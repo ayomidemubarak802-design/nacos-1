@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Payment Tracker</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Times New Roman', Times, serif;
+      }
+      body {
+         background: #1e293b;
+         display: flex;
+         justify-content: center;
+         padding: 30px;
+         color: white;
+      }
+      .container {
+         background: #0f172a;
+         border-radius: 15px;
+         width: 100%;
+         max-width: 650px;
+         padding: 20px;
+         box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      }
+      h1 {
+         text-align: center;
+         margin-bottom: 20px;
+         color: #22c55e;
+      }
+      table {
+         width: 100%;
+         border-collapse: collapse;
+         margin-bottom: 20px;
+      }
+      th, td {
+         padding: 12px;
+         text-align: left;
+         border-bottom: 1px solid #334155;
+      }
+      th {
+         background: #2563eb;
+         color: white;
+      }
+      tr:hover {
+         background: #1e293b;
+      }
+      .amount {
+         text-align: right;
+         font-weight: bold;
+      }
+      .paid {
+         text-align: center;
+      }
+      input[type="checkbox"] {
+         width: 18px;
+         height: 18px;
+         accent-color: #22c55e;
+      }
+      .summary {
+         display: flex;
+         justify-content: space-between;
+         background: #065f46;
+         padding: 15px;
+         border-radius: 10px;
+         font-size: 16px;
+      }
+      .summary div {
+         text-align: right;
+      }
+      .paid-row {
+         background: rgba(34, 197, 94, 0.1); /* green highlight when paid */
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <h1>Payment Tracker</h1>
+      <table id="paymentTable">
+         <thead>
+            <tr>
+               <th>S/N</th>
+               <th>Name</th>
+               <th class="amount">Amount</th>
+               <th class="paid">Paid</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr data-amount="10000">
+               <td>1</td><td>Grace</td><td class="amount">₦10,000</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="13700">
+               <td>2</td><td>ADEDAMOLA ELIZABETH ADESIPE</td><td class="amount">₦13,700</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="15000">
+               <td>3</td><td>Adeosun Mubarak</td><td class="amount">₦15,000</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="10000">
+               <td>4</td><td>Aduragbemi</td><td class="amount">₦10,000</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="10000">
+               <td>5</td><td>Victoria</td><td class="amount">₦10,000</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="10000">
+               <td>6</td><td>Samson</td><td class="amount">₦10,000</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="13700">
+               <td>7</td><td>Adenuga</td><td class="amount">₦13,700</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="15000">
+               <td>8</td><td>Moyinoluwa</td><td class="amount">₦15,000</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+            <tr data-amount="13700">
+               <td>9</td><td>Adeniran Sunday</td><td class="amount">#13700</td><td class="paid"><input type="checkbox"></td>
+            </tr>
+         </tbody>
+      </table>
+
+      <div class="summary">
+         <div>
+            <p><b>Total Expected:</b></p>
+            <p><b>Amount Paid:</b></p>
+            <p><b>Balance Remaining:</b></p>
+         </div>
+         <div>
+            <p id="total">₦111,100</p>
+            <p id="paid">₦0</p>
+            <p id="balance">₦111,100</p>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      const total = 111100;
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      const paidEl = document.getElementById('paid');
+      const balanceEl = document.getElementById('balance');
+
+      function formatNaira(num) {
+         return '₦' + num.toLocaleString();
+      }
+
+      function updateSummary() {
+         let amountPaid = 0;
+         
+         checkboxes.forEach(checkbox => {
+            const row = checkbox.closest('tr');
+            const amount = parseInt(row.dataset.amount);
+            
+            if (checkbox.checked) {
+               amountPaid += amount;
+               row.classList.add('paid-row');
+            } else {
+               row.classList.remove('paid-row');
+            }
+         });
+
+         const balance = total - amountPaid;
+         paidEl.textContent = formatNaira(amountPaid);
+         balanceEl.textContent = formatNaira(balance);
+      }
+
+      checkboxes.forEach(cb => cb.addEventListener('change', updateSummary));
+   </script>
+</body>
+</html>
