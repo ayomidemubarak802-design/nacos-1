@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGPA Calculator - 5.0 Scale</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+   .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    th { background: #3498db; color: white; }
+    input { width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+   .btn { padding: 10px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+   .btn-add { background: #2ecc71; color: white; }
+   .btn-calc { background: #3498db; color: white; }
+   .btn-clear { background: #e74c3c; color: white; }
+   .result { background: #ecf0f1; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 18px; }
+   .result span { font-weight: bold; color: #2980b9; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>📊 CGPA Calculator - 5.0 Scale</h1>
+    <p><b>Note:</b> A=5, B=4, C=3, D=2, E=1, F=0. Used in Unilorin and most Nigerian Unis</p>
+
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Credit Unit</th>
+                <th>Score</th>
+                <th>Grade</th>
+                <th>GP</th>
+                <th>CU x GP</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="courseBody">
+        </tbody>
+    </table>
+
+    <button class="btn btn-add" onclick="addRow()">+ Add Course</button>
+    <button class="btn btn-calc" onclick="calculate()">Calculate GPA/CGPA</button>
+    <button class="btn btn-clear" onclick="clearAll()">Clear All</button>
+
+    <div class="result" id="resultBox">
+        <p>Total Units: <span id="totalUnits">0</span></p>
+        <p>Total Points: <span id="totalPoints">0</span></p>
+        <p>GPA: <span id="gpa">0.00</span></p>
+        <p>Class: <span id="class">-</span></p>
+    </div>
+</div>
+
+<script>
+// Grading System for 5.0
+function getGradePoint(score) {
+    score = parseFloat(score);
+    if (score >= 70) return {grade: 'A', gp: 5};
+    if (score >= 60) return {grade: 'B', gp: 4};
+    if (score >= 50) return {grade: 'C', gp: 3};
+    if (score >= 45) return {grade: 'D', gp: 2};
+    if (score >= 40) return {grade: 'E', gp: 1};
+    return {grade: 'F', gp: 0};
+}
+
+function addRow() {
+    let tbody = document.getElementById('courseBody');
+    let row = tbody.insertRow();
+    row.innerHTML = `
+        <td><input type="text" placeholder="MTH101"></td>
+        <td><input type="number" min="1" max="6" value="3" onchange="calculate()"></td>
+        <td><input type="number" min="0" max="100" onchange="calculate()"></td>
+        <td class="grade">-</td>
+        <td class="gp">0</td>
+        <td class="total">0</td>
+        <td><button onclick="deleteRow(this)">X</button></td>
+    `;
+}
+
+function deleteRow(btn) {
+    btn.parentElement.parentElement.remove();
+    calculate();
+}
+
+function calculate() {
+    let tbody = document.getElementById('courseBody');
+    let totalUnits = 0;
+    let totalPoints = 0;
+
+    for (let i = 0; i < tbody.rows.length; i++) {
+        let row = tbody.rows[i];
+        let cu = parseFloat(row.cells[1].children[0].value) || 0;
+        let score = parseFloat(row.cells[2].children[0].value) || 0;
+        let gpData = getGradePoint(score);
+
+        row.cells[3].innerText = gpData.grade;
+        row.cells[4].innerText = gpData.gp;
+        row.cells[5].innerText = (cu * gpData.gp).toFixed(2);
+
+        totalUnits += cu;
+        totalPoints += cu * gpData.gp;
+    }
+
+    let gpa = totalUnits > 0? (totalPoints / totalUnits).toFixed(2) : 0.00;
+
+    document.getElementById('totalUnits').innerText = totalUnits;
+    document.getElementById('totalPoints').innerText = totalPoints.toFixed(2);
+    document.getElementById('gpa').innerText = gpa;
+    document.getElementById('class').innerText = getClass(gpa);
+
+    // Save to localStorage
+    localStorage.setItem('cgpaData', tbody.innerHTML);
+}
+
+function getClass(gpa) {
+    gpa = parseFloat(gpa);
+    if (gpa >= 4.50) return 'First Class';
+    if (gpa >= 3.50) return 'Second Class Upper';
+    if (gpa >= 2.40) return 'Second Class Lower';
+    if (gpa >= 1.50) return 'Third Class';
+    return 'Pass / Probation';
+}
+
+function clearAll() {
+    document.getElementById('courseBody').innerHTML = '';
+    calculate();
+}
+
+// Load saved data
+window.onload = function() {
+    let saved = localStorage.getItem('cgpaData');
+    if (saved) document.getElementById('courseBody').innerHTML = saved;
+    addRow(); // add 1 empty row
+    calculate();
+}
+</script>
+</body>
+</html>
