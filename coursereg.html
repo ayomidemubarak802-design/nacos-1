@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <link rel="stylesheet" href="coursereg.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Student Course Registration</h1>
+
+    <form id="courseForm">
+
+        <div class="student-info">
+            <div class="input-box">
+                <label>Student ID</label>
+                <input type="number" placeholder="Enter Student ID">
+            </div>
+
+            <div class="input-box">
+                <label>Student Name</label>
+                <input type="text" placeholder="Enter Student Name">
+            </div>
+
+            <div class="input-box">
+                <label>Department</label>
+                <select>
+                    <option>Computer Science</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label>Level</label>
+                <select>
+                    <option>ND I</option>
+                    <option>ND II</option>
+                    <option>HND I</option>
+                    <option>HND II</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label>Semester</label>
+                <select>
+                    <option>First Semester</option>
+                    <option>Second Semester</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label>Session</label>
+                <select>
+                    <option>2025/2026</option>
+                    <option>2026/2027</option>
+                </select>
+            </div>
+        </div>
+
+        <h2>Available Courses</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Unit</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="3"></td>
+                    <td>COM221</td>
+                    <td>Basic Computer Networking</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="3"></td>
+                    <td>COM222</td>
+                    <td>Basic Hardware Maintenance</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="3"></td>
+                    <td>COM223</td>
+                    <td>Management Information System</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="3"></td>
+                    <td>COM224</td>
+                    <td>Web Technology</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="3"></td>
+                    <td>COM225</td>
+                    <td>File Organization & Management</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="3"></td>
+                    <td>COM226</td>
+                    <td>Computer System Troubleshooting</td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="4"></td>
+                    <td>COM227</td>
+                    <td>Project</td>
+                    <td>4</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="course" data-unit="2"></td>
+                    <td>GNS202</td>
+                    <td>Communication in English II</td>
+                    <td>2</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3>Total Units: <span id="totalUnit">0</span></h3>
+
+        <button type="submit">Register Courses</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+</div>
+
+<script src="coursereg.js"></script>
+
+</body>
+</html>
