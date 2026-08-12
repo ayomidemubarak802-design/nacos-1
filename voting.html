@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>voting Eligibility</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
+        body{
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            
+        }
+        .container{
+            background: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow:0 3px 6px black;
+        }
+        h2{
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom:10px ;
+        }
+        .age{
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        
+        }
+        .btn{
+            width: 100%;
+            padding: 5px;
+            outline: none;
+            border: none;
+            color: white;
+            background: blue;
+        }
+        .message{
+            margin-top: 10px;
+            text-align: center;
+            
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="container">
+        <h2>Voting System</h2>
+      <input type="number" class="age" id="age" placeholder="Enter your age">
+      <input class="btn" id="btn" type="submit">
+      <p id="message" class="message"></p>
+   </div>
+   
+   <script>
+       const age = document.getElementById('age');
+       const message = document.getElementById('message')
+       const btn = document.getElementById('btn')
+       btn.addEventListener('click', function(){
+           const UserAge=Number(age.value);
+           if(UserAge>=18){
+               message.textContent="Eligible to vote"
+               message.style.color='green'
+           }else{
+               message.textContent = 'Not Eligible'
+               message.style.color='red'
+           }
+           
+       });
+   </script>
+</body>
+
+</html>

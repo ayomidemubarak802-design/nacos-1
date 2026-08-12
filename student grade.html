@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>students result checker</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
+        body{
+            background: brown;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container{
+            background: white;
+            width:300px;
+            border-radius: 8px;
+           box-shadow: 0 3px 6px grey;    
+           padding: 15px;
+            
+        }
+        h2{
+            text-align: center;
+            font-size: 1.1em;
+            color: blue;
+            margin: 10px;
+        }
+        label{
+            display: block;
+            margin-top: 15px;
+            font-size: 12px;
+        
+        }
+        input{
+            width: 100%;
+            padding: 5px;
+            border-radius: 8px;
+            outline: none;
+            margin-top: 5px;
+            
+        }
+        button{
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            background: blue;
+            color: white;
+            border: none;
+        }
+        
+        .display{
+            margin-top: 25px;
+            padding: 20px;
+            background: white;
+            line-height: 1.8;
+            font-size: 12px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Result Checker</h2>
+        <label for="Student Name">Student Name</label>
+        <input id="name" type="text" placeholder="Enter Student Name"/>
+        
+        <label for="Mathematics">Mathematics MTH121</label>
+        <input id="MTH" type="number" placeholder="Enter Score">
+        <label for="English">English Lang. GNS102</label>
+        <input id="GNS" type="number" placeholder="Enter Score">
+        <label for="Computer Science COM112">Computer Science COM 112</label>
+        <input id="COM" type="number" placeholder="Enter Score">
+        <button id="btn" type="button">Calculate Result</button>
+        <div class="display">
+            <h2>Student Result</h2>
+            
+            <p><strong>Student Name:</strong><span id="displayname"></span></p>
+            
+            <p><strong>MTH121:</strong><span id="math"></span></p>
+            
+            <p><strong>GNS102:</strong><span id="english"></span></p>
+            
+            <p><strong>COM112:</strong><span id="computer"></span></p>
+            
+            <hr>
+            
+            <p><strong>Total:</strong><span id="total"></span></p>
+            
+            <p><strong>Average:</strong><span id="Average"></span></p>
+            
+            <p><strong>Grade:</strong><span id="Grade"></span></p>
+            
+            <p><strong>Status:</strong><span id="status"></span></p>
+        </div>
+    </div>
+    
+    
+    <script>
+        const name = document.getElementById('name')
+        
+        const MTH = document.getElementById('MTH')
+       
+        const GNS = document.getElementById('GNS')
+        
+        const COM = document.getElementById('COM')
+        const btn = document.getElementById('btn')
+        btn.addEventListener('click',function(){
+            
+            const studentName = name.value;
+            
+            const math = Number(MTH.value)
+            
+            const english = Number(GNS.value)
+        ;
+        
+        const computer = Number(COM.value);
+        
+        // total
+        const total = math + english + computer ;
+        const average = total/3;
+        
+        let grade;
+        if(average>=70){
+            grade='A';
+            
+        }else if 
+        (average >= 60) {
+            grade = 'B';
+        }else if
+
+        (average >= 50) {
+            grade = 'C';
+         }else if
+        (average >= 45){
+            grade = 'D';
+            }else if
+        (average >= 40) {
+            grade = 'E';
+        }else {
+            grade = 'F';
+        }
+        
+        
+        let status ;
+        
+        if (average >= 40){
+            status = 'pass' 
+        }else{
+            status = 'fail';
+        }
+        document.getElementById('displayname').textContent= studentName;
+        document.getElementById('math').textContent=math;
+        
+        document.getElementById('english').textContent= english;
+        
+        document.getElementById('computer').textContent= computer;
+        
+        document.getElementById('total').textContent=total;
+        document.getElementById('Average').textContent=average;
+        
+        document.getElementById('Grade').textContent=grade;
+        
+        document.getElementById('status').textContent=status;
+            
+        })
+    </script>
+    
+</body>
+
+</html>

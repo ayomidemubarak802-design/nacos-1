@@ -1,0 +1,95 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login System</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body{
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container{
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px grey;
+        }
+        h2{
+            text-align: center;
+            font-size: 1.1em;
+            color: purple;
+        }
+        label{
+            display:block;
+            font-size: 10px;
+            color: black;
+            margin-top: 10px;
+        }
+        input{
+            width: 100%;
+            padding: 5px;
+            border-radius: 8px;
+            outline: none;
+            border: 2px solid purple;
+        }
+        button{
+            width: 100%;
+            padding: 5px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: none;
+            background: purple;
+            color: white;
+        }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login System</h2>
+        <form>
+            <label for="Username">Username</label>
+            <input type="text" class="username" id="username" required/>
+            <label for="password">password</label>
+            <input type="password" id="psw" class="psw" required/>
+            
+            <button id="btn" type="button">Login</button>
+        </form>
+        <p id="message" class="message"></p>
+    </div>
+    
+    
+    <script>
+        const username = document.getElementById('username');
+        const psw = document.getElementById('psw')
+        const btn = document.getElementById('btn')
+        const message = document.getElementById('message')
+        btn.addEventListener('click',function(){
+            if (username.value === 'admin'&& psw.value ==='12345'){
+                message.textContent='Login Successful';
+                message.style.color ='green';
+            }else{
+                message.textContent ='Invalid Username or Password';
+                message.style.color ='red';
+            }
+        });
+    
+    
+    
+    </script>
+</body>
+</html>
