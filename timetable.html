@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Timetable</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(139deg,#6E40A2,#1A34C4);
+            padding: 10px;
+            height: 100vh;
+        }
+        .table{
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            padding: 5px;
+            border-top: 6px solid #47518C;
+            height: 100%;
+        }
+        .table h2{
+            text-align: center;
+            font-size: 24px;
+            margin-top: 10px;
+            color: #0b3c71;
+        }
+        .table h3{
+            text-align: center;
+            font-size: 16px;
+            color: #0b3c71;
+        }
+        label{
+            display: block;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        input{
+            width:95%;
+            border-radius: 8px;
+            outline: none;
+            border: 1px solid #0b3c71;
+            padding: 8px;
+        }
+        select{
+            width: 95%;
+            padding: 5px;
+            border-radius: 8px;
+        }
+        button{
+            width: 100%;
+            padding: 5px;
+            background: #0b3c80;
+            color: white;
+            border: none;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        .table-box {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 5px;
+        }
+
+        table {
+             width: 100%;
+             min-width: 650px;
+             background: white;
+             border-collapse: collapse;
+        }
+
+        th {
+            background: #0b3c71;
+            color: white;
+            padding: 8px;
+            font-size: 10px;
+            }
+
+        td {
+             border: 1px solid #ccc;
+             text-align: center;
+             padding: 8px;
+             font-size: 9px;
+            }
+           
+        
+   </style>
+</head>
+<body>
+    <div class="table">
+        <h2>The Polytechnic Of Ibadan </h2>
+        <h3>Department of Computer studies Timetable</h3>
+        <label for="Course Title :">Course Title :</label>
+        <input id="course" type="text" placeholder="Intro to C programming">
+        <label for="Select Day">Select Day:</label>
+        <select id="day">
+            <option value="select day">select day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+        </select>
+        <label for="starting time">Starting Time:</label>
+        <input type="time" id="start"/>
+        <label for="EndingTime">Ending Time:</label>
+        <input type="time" id="end" />
+        <button onclick="addcourse()" type="submit">Add</button>
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+                <tbody id="tablebody">
+                    
+                </tbody>
+        </table>
+        </div>
+    </div>  
+    
+    
+    <script>
+        function addcourse(){
+        let course = document.getElementById('course').value;
+        let start = document.getElementById('start').value;
+        let end = document.getElementById('end'). value;
+        let day = document.getElementById('day'). value;
+        if (course == ""|| day == "" || start==""|| end=="" ){
+            alert('fill all the field')
+            return;
+        }
+        let tablebody = document.getElementById('tablebody')
+        let monday = "";
+        let tuesday = "";
+        let wednesday = "";
+        let thursday = "";
+        let friday = "";
+        
+        if (day == 'Monday'){
+            monday = course;
+        }
+        if (day == 'Tuesday') {
+            tuesday = course;
+        }
+        if (day == 'Wednesday') {
+            wednesday = course;
+        }
+        if (day == 'Thursday') {
+            thursday = course;
+        }
+        if (day == 'Friday') {
+            friday = course;
+        }
+        tablebody.innerHTML +=`<tr>
+            <td>${start}-${end}</td>
+            <td>${monday}</td>
+            <td>${tuesday}</td>
+            <td>${wednesday}</td>
+            <td>${thursday}</td>
+            <td>${friday}</td>
+        </tr>`;
+        document.getElementById('course'). value ='';
+        document.getElementById('day'). value ='';
+        document.getElementById('start'). value ='';
+        
+        document.getElementById('end'). value ='';
+        
+        }
+    </script>
+</body>
+
+</html>
